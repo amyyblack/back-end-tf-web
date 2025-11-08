@@ -223,6 +223,8 @@ Tabela: **filmes**
 
 ## 👩‍💻 Desenvolvido por
 
-**Luiza Nere**
-💡 Projeto de backend — *Catálogo de Filmes Brasileiros*
-Base de dados hospedada em [**Neon.tech**](https://neon.tech/)
+1. Amanda Sousa
+2. Iago Ornelas 
+3. Rosilayne Ferreira
+4. Gabriel Silva 
+5. Yuri Dias
