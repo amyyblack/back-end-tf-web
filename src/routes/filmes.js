@@ -1,5 +1,6 @@
 import express from "express";
 import pool from "../db/connection.js";
+import { validarAdmin } from "../middlewares/auth.js";  // << IMPORTANTE
 
 const router = express.Router();
 
@@ -40,9 +41,10 @@ router.get("/:id", async (req, res) => {
 /* 
 ==========================================
   [POST] /filmes  → adiciona um novo filme
+  (PROTEGIDA — precisa autenticação)
 ==========================================
 */
-router.post("/", async (req, res) => {
+router.post("/", validarAdmin, async (req, res) => {
   const { titulo, diretor, ano, genero, sinopse, avaliacao, imagem_url } = req.body;
   if (!titulo) {
     return res.status(400).json({ erro: "O campo 'titulo' é obrigatório." });
@@ -65,9 +67,10 @@ router.post("/", async (req, res) => {
 /* 
 ==========================================
   [PUT] /filmes/:id  → atualiza um filme
+  (PROTEGIDA)
 ==========================================
 */
-router.put("/:id", async (req, res) => {
+router.put("/:id", validarAdmin, async (req, res) => {
   const { id } = req.params;
   const { titulo, diretor, ano, genero, sinopse, avaliacao, imagem_url } = req.body;
 
@@ -93,9 +96,10 @@ router.put("/:id", async (req, res) => {
 /* 
 ==========================================
   [DELETE] /filmes/:id  → remove um filme
+  (PROTEGIDA)
 ==========================================
 */
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", validarAdmin, async (req, res) => {
   const { id } = req.params;
   try {
     const result = await pool.query("DELETE FROM filmes WHERE id=$1 RETURNING *", [id]);
