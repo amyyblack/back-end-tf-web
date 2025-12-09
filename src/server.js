@@ -6,8 +6,9 @@ import filmesRouter from './routes/filmes.js';
 dotenv.config();
 const app = express();
 app.use(cors({
-  origin: '*', // ⚠️ permite acesso de qualquer origem (ótimo para testes)
-  methods: ['GET', 'POST', 'PUT', 'DELETE']
+  origin: '*',
+  methods: ['GET','POST','PUT','DELETE','OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 app.use(express.json());
 
